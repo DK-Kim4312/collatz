@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "../styles/collatz_sequence.css";
+import LineGraph from "./LineGraph";
 
 function CollatzSequence() {
     const [inputNumber, setInputNumber] = useState("");
@@ -36,27 +37,33 @@ function CollatzSequence() {
     return (
         <div className="main">
             <div>
-                <div className={styles.description}>
-                    <h1>Collatz Sequence</h1>
-                    <p>
-                        The Collatz conjecture is a conjecture in mathematics that concerns a
-                        sequence defined as follows: start with any positive integer n. Then
-                        each term is obtained from the previous term as follows: if the
-                        previous term is even, the next term is one half of the previous
-                        term. If the previous term is odd, the next term is 3 times the
-                        previous term plus 1. The conjecture is that no matter what value of
-                        n, the sequence will always reach 1.
-                    </p>
+                <div className="rowblock">
+                    <div className={styles.description}>
+                        <h1>Collatz Sequence</h1>
+                        <p>
+                            The Collatz conjecture is a conjecture in mathematics that concerns a
+                            sequence defined as follows: start with any positive integer n. Then
+                            each term is obtained from the previous term as follows: if the
+                            previous term is even, the next term is one half of the previous
+                            term. If the previous term is odd, the next term is 3 times the
+                            previous term plus 1. The conjecture is that no matter what value of
+                            n, the sequence will always reach 1.
+                        </p>
+                        <input
+                            className="input-field"
+                            type="text"
+                            placeholder="Enter a natural number"
+                            value={inputNumber}
+                            onChange={(e) => setInputNumber(e.target.value)}
+                        />
+                    </div>
+                    <LineGraph data={sequence} />
                 </div>
                 <div>
-                    <input
-                        className="input-field"
-                        type="text"
-                        placeholder="Enter a natural number"
-                        value={inputNumber}
-                        onChange={(e) => setInputNumber(e.target.value)}
-                    />
+
+
                     <button className="custom-button" onClick={handleButtonClick}>Generate Sequence</button>
+
                     <table className="result-table">
                         <thead>
                             <tr>
@@ -73,6 +80,7 @@ function CollatzSequence() {
                             ))}
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
